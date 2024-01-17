@@ -13,26 +13,18 @@ client = openai.OpenAI(
 )
 
 
-def get_openai_response_and_log(prompt, system):
+def generate_image(prompt, system):
     max_retry = 5
     retry = 0
 
-    messages = [
-        {"role": "system", "content": system},
-        {"role": "user", "content": prompt},
-    ]
-
     while retry < max_retry:
         try:
-            print("Creating chat with OpenAI API...")
+            print("Creating image with OpenAI API...")
 
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=messages,
-            )
-            print(response.id)
-            text = response.choices[0].message.content.strip()
-            text = re.sub("\s+", " ", text)
+            response = client.images.generate(prompt=prompt, n=1, size="1024x1024")
+
+            url = response.data[0].url
+            text = re.sub("\s+", " ", url)
 
             # Generate a unique filename based on the current time
             filename = f"{time.strftime('%Y%m%d-%H%M%S')}_gpt3.txt"
@@ -46,12 +38,12 @@ def get_openai_response_and_log(prompt, system):
             with open(f"{log_dir}/{filename}", "w", encoding="utf-8") as outfile:
                 outfile.write(
                     f"System prompt: ===\n{system}\n===\n"
-                    + f"Chat prompt: ===\n{prompt}\n===\n"
+                    + f"Image prompt: ===\n{prompt}\n===\n"
                     + f"RESPONSE:\n====\n{text}\n===\n"
                 )
 
             return text
         except Exception as error:
-            print("API Error:", error)
+            print("Image API Error:", error)
             retry += 1
             time.sleep(1)

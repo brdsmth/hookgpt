@@ -16,9 +16,17 @@ Install requirements:
 
 `pip3 install requirements.txt`
 
-Run script
+To generate a chat:
 
-`python3 script.py`
+- Specify the `mode` to be `chat` and include your prompt as an argument.
+
+`python3 script.py chat "how many inches in a foot"`
+
+To generate an image:
+
+- Specify the `mode` to be `image` and include your prompt as an argument.
+
+`python3 script.py image "workaholic"`
 
 ### Notes
 
