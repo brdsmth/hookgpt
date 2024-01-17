@@ -4,17 +4,25 @@ This is a project for interacting with the OpenAI ChatGPT API.
 
 ### Usage
 
+This project uses `python3` and `pip3`.
+
+Create virtual environment
+
+`python3 -m venv .venv`
+
+Activate virtual environment
+
+`source .venv/bin/activate`
+
 Environment variables
 
 ```python
-OPENAI_API_KEY=
+OPENAI_API_KEY="your api key"
 ```
-
-This project uses `python3` and `pip3`
 
 Install requirements:
 
-`pip3 install requirements.txt`
+`pip3 install -r requirements.txt`
 
 To generate a chat:
 
