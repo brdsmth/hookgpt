@@ -36,6 +36,12 @@ To generate an image:
 
 `python3 script.py image "workaholic"`
 
+#### Running the Server
+
+To run the HookGPT server:
+
+`uvicorn api:app --port 9000 --reload`
+
 ### Notes
 
 Activate virtual environment
